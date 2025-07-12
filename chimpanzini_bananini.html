@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chimpanzini Bananini and the Banana That Glowed - Brainrot Bedtime</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial Black', Arial, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Animated background */
+        .bg-chaos {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 20% 50%, #ff0080 0%, transparent 50%),
+                       radial-gradient(circle at 80% 20%, #00ff80 0%, transparent 50%),
+                       radial-gradient(circle at 40% 80%, #8000ff 0%, transparent 50%);
+            animation: chaosMove 6s ease-in-out infinite alternate;
+            opacity: 0.3;
+        }
+
+        @keyframes chaosMove {
+            0% { transform: rotate(0deg) scale(1); }
+            100% { transform: rotate(3deg) scale(1.05); }
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* Navigation */
+        .nav {
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #ff0080;
+            padding: 15px 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .nav .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #ff0080;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav .back-btn {
+            background: linear-gradient(45deg, #00ff80, #00ffff);
+            color: #000;
+            padding: 8px 16px;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid #fff;
+            transition: all 0.3s ease;
+        }
+
+        .nav .back-btn:hover {
+            background: linear-gradient(45deg, #ff0080, #8000ff);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* Story header */
+        .story-header {
+            background: rgba(0, 0, 0, 0.8);
+            border: 3px solid #00ff80;
+            padding: 25px;
+            margin-bottom: 30px;
+            text-align: center;
+            transform: rotate(-1deg);
+            box-shadow: 0 0 30px #00ff80;
+        }
+
+        .story-title {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px #00ff80;
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #00ff80; }
+            to { text-shadow: 0 0 20px #00ff80, 0 0 30px #00ff80; }
+        }
+
+        .story-meta {
+            font-size: 1rem;
+            color: #00ff80;
+            font-weight: normal;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Story content */
+        .story-content {
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #8000ff;
+            padding: 30px;
+            border-radius: 0;
+            box-shadow: 0 0 20px rgba(128, 0, 255, 0.3);
+            transform: rotate(0.5deg);
+        }
+
+        .story-image {
+            width: 100%;
+            max-width: 400px;
+            height: 300px;
+            margin: 20px auto;
+            display: block;
+            border: 3px solid #fff;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+
+        .story-text {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #e2e8f0;
+            font-weight: normal;
+            text-align: left;
+        }
+
+        .story-text p {
+            margin-bottom: 20px;
+        }
+
+        .story-text h1 {
+            font-family: 'Arial Black', Arial, sans-serif;
+            font-size: 2.5rem;
+            color: #ff0080;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+            margin: 30px 0;
+            text-shadow: 0 0 10px #ff0080;
+        }
+
+        /* Navigation between stories */
+        .story-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .story-nav-btn {
+            background: linear-gradient(45deg, #ff0080, #8000ff);
+            color: #fff;
+            padding: 15px 25px;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid #fff;
+            transition: all 0.3s ease;
+            flex: 1;
+            text-align: center;
+            min-width: 150px;
+        }
+
+        .story-nav-btn:hover {
+            background: linear-gradient(45deg, #00ff80, #00ffff);
+            color: #000;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+        }
+
+        .story-nav-btn.disabled {
+            background: #333;
+            color: #666;
+            cursor: not-allowed;
+            border-color: #666;
+        }
+
+        .story-nav-btn.disabled:hover {
+            transform: none;
+            background: #333;
+            color: #666;
+            box-shadow: none;
+        }
+
+        /* Reading time indicator */
+        .reading-time {
+            background: rgba(0, 255, 128, 0.2);
+            border: 1px solid #00ff80;
+            padding: 10px 15px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #00ff80;
+            font-weight: bold;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .story-title {
+                font-size: 1.5rem;
+            }
+            
+            .story-content {
+                padding: 20px;
+            }
+            
+            .story-text {
+                font-size: 1rem;
+            }
+            
+            .nav {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* Particles */
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #00ff80;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); opacity: 1; }
+            50% { transform: translateY(-30px); opacity: 0.3; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-chaos"></div>
+    
+    <div class="container">
+        <!-- Navigation -->
+        <nav class="nav">
+            <a href="index.html" class="logo">🧠 BRAINROT BEDTIME</a>
+            <a href="index.html" class="back-btn">← Back to Stories</a>
+        </nav>
+
+        <!-- Story Header -->
+        <header class="story-header">
+            <h1 class="story-title">Chimpanzini Bananini and the Banana That Glowed</h1>
+            <p class="story-meta">Lesson: Sharing joy makes it grow bigger and brighter</p>
+        </header>
+
+        <!-- Story Content -->
+        <div class="story-content">
+            <div class="reading-time">⏱️ Reading Time: About 6 minutes</div>
+            
+            <!-- Cover Image -->
+            <img src="chimpanzini_bananini.png" alt="Chimpanzini Bananini and the Banana That Glowed" class="story-image">
+            
+            <div class="story-text">
+                <h1>Chimpanzini Bananini and the Banana That Glowed</h1>
+
+                <p>High in the tallest tree house in all of brainrot land, where the banana leaves rustled like silk scarves in the breeze and the branches twisted upward toward cotton candy clouds, lived Chimpanzini Bananini, the most talented banana juggler in the universe.</p>
+
+                <p>Chimpanzini had fur that sparkled with tiny flecks of gold, nimble hands that could juggle a hundred bananas at once, and most importantly, his special hypnotic banana powers. When he tossed his magical bananas just right, they would glow and spin and create patterns in the air that could make anyone smile, no matter how sad they felt.</p>
+
+                <p>Every morning, Chimpanzini would wake up, stretch his golden arms, and practice his juggling in the town square. The other creatures of brainrot land would gather to watch his spectacular shows—bananas spinning like tiny suns, creating rainbow trails as they danced through the air.</p>
+
+                <p>"Banana-bini! Chimpan-zini!" the crowd would cheer as his glowing fruit painted pictures of joy across the sky.</p>
+
+                <p>But this particular morning, as Chimpanzini was swinging through his favorite banana grove looking for the perfect fruit for his daily performance, he discovered something absolutely extraordinary.</p>
+
+                <p>There, hanging from the highest branch of the most ancient banana tree, was the most magnificent banana he had ever seen.</p>
+
+                <p>It wasn't just yellow—it was golden like captured sunshine. It wasn't just curved—it was perfectly shaped like a crescent moon. And most amazing of all, it glowed with a warm, beautiful light that made the air around it shimmer like liquid starlight.</p>
+
+                <p>"Mamma mia!" Chimpanzini gasped, his eyes wide with wonder. "This must be the legendary Golden Banana of Ultimate Joy!"</p>
+
+                <p>He had heard stories about such a banana from his great-grandfather Chimpanzoni Bananoni, but he had always thought they were just fairy tales. The Golden Banana was said to be so special that its hypnotic powers could create the most beautiful light show in the universe.</p>
+
+                <p>Very carefully, Chimpanzini plucked the golden banana from its branch. The moment he touched it, his hypnotic banana powers felt stronger than ever before. When he gave it just the tiniest toss, it spun through the air like a miniature comet, leaving trails of golden sparkles that made the whole grove glow with magical light.</p>
+
+                <p>"This is incredible!" Chimpanzini said to himself. "With this banana, I could create the most amazing performance ever! Everyone in brainrot land would come to see it!"</p>
+
+                <p>But then, a different thought crept into his mind. "But what if someone wants to take it from me? What if another juggler sees how special it is? What if I lose it during a performance?"</p>
+
+                <p>The more Chimpanzini thought about it, the more worried he became. This banana was too precious, too special, too perfect to risk sharing with anyone else.</p>
+
+                <p>So he made a decision that seemed very smart at the time. He would keep the Golden Banana safe by hiding it where no one else could ever find it.</p>
+
+                <p>Chimpanzini swung through the trees to his secret hideaway—a cozy tree house hidden deep in the canopy, surrounded by thick leaves and known only to him. He placed the Golden Banana in a special box made of woven palm fronds and tucked it away in the darkest corner of his hiding place.</p>
+
+                <p>"There," he said with satisfaction. "Now my perfect banana will always be safe, and it will always be mine."</p>
+
+                <p>For the next few days, Chimpanzini went about his regular juggling performances with his ordinary bananas. But something felt wrong. His shows didn't seem as bright or as joyful as they used to be. The other brainrot creatures still clapped, but not with the same excitement as before.</p>
+
+                <p>"Is everything all right, Chimpanzini?" asked Ballerina Cappucina after one of his performances. "Your juggling is still beautiful, but you seem... sad."</p>
+
+                <p>"I'm fine!" Chimpanzini said quickly, though he wasn't sure that was true. "Just practicing some new routines!"</p>
+
+                <p>Every day, he would sneak away to his hiding place to check on the Golden Banana. And every day, something strange and troubling happened.</p>
+
+                <p>The first day, the banana seemed just a little less bright than before.<br>
+                The second day, its golden color had faded slightly.<br>
+                The third day, the magical glow was barely a glimmer.</p>
+
+                <p>By the end of the week, Chimpanzini opened his special box to find that his magnificent Golden Banana had become small, brown, and wrinkled. Its magical light was completely gone, and it looked just like any old banana that had been forgotten in a dark corner.</p>
+
+                <p>"No, no, no!" Chimpanzini cried, picking up the sad, shriveled fruit. "What happened to my beautiful banana? I kept it so safe! I protected it from everything!"</p>
+
+                <p>He tried tossing it gently, hoping his hypnotic powers could restore its magic, but the banana just fell to the ground with a sad little thud. All its golden sparkles were gone, all its beautiful light had disappeared.</p>
+
+                <p>Chimpanzini sat in his secret hideaway feeling more confused and sad than he had ever felt in his life. He had done everything he could to keep his special banana safe, but somehow, keeping it safe had made it ordinary.</p>
+
+                <p>The next morning, as he sat sadly in the town square with his regular bananas, he noticed Lirilì Larilà approaching. She looked tired and hungry after a long journey across the purple desert, and her usual magical sparkle seemed dimmed.</p>
+
+                <p>"Ciao, Chimpanzini," Lirilì said with a weary smile. "I don't suppose you have any fruit to share? I've been traveling for days, and I haven't eaten anything since yesterday."</p>
+
+                <p>Chimpanzini looked at his friend's tired face, and suddenly his heart felt very heavy. He had been so worried about keeping his special banana safe that he had forgotten what made his juggling truly special—it was meant to bring joy to others.</p>
+
+                <p>Without thinking about it, he reached into his pocket and pulled out the small, brown, wrinkled banana that had once been so magnificent.</p>
+
+                <p>"I don't have much," he said honestly, "but you're welcome to share this with me."</p>
+
+                <p>Even though the banana looked ordinary and sad, Chimpanzini broke it in half and offered one piece to Lirilì.</p>
+
+                <p>The moment—the very instant—that he shared the banana, something magical happened.</p>
+
+                <p>Both halves began to glow! Not just a little bit, but brighter and more beautiful than the Golden Banana had ever glowed before. The light was warm and golden and filled with something even more powerful than magic—it was filled with kindness.</p>
+
+                <p>"Che meraviglia!" Lirilì gasped as the banana pieces sparkled in their hands like tiny suns.</p>
+
+                <p>Soon, Bombardiro Crocodilo flew overhead and saw the beautiful light. "What's that wonderful glow?" he called down.</p>
+
+                <p>"Chimpanzini shared his banana with me!" Lirilì called back. "Would you like a piece too?"</p>
+
+                <p>And something even more amazing happened. When they broke Lirilì's glowing half into smaller pieces, each piece became even brighter! Soon Tung Tung Sahur had heard the commotion and came drumming over. Then Ballerina Cappucina danced by. Then Frigo Camelo wandered over with his curious refrigerator belly open.</p>
+
+                <p>Each time Chimpanzini shared a piece of the magical banana, it became more beautiful, more glowing, more wonderful than before. Soon there were enough pieces for everyone in the town square, and each piece was sparkling like a star.</p>
+
+                <p>But the most magical thing of all happened next. As everyone enjoyed their glowing banana pieces together, laughing and sharing stories and feeling the warm light in their hearts, something began to grow in the exact spot where they were sitting.</p>
+
+                <p>A beautiful tree sprouted from the ground—not just any tree, but a magnificent banana tree with golden leaves and branches that reached toward the sky like arms ready to give the biggest hug in the world. And hanging from every branch were dozens and dozens of Golden Bananas, each one glowing with the warm light of friendship and sharing.</p>
+
+                <p>"Incredible!" Chimpanzini laughed, his hypnotic banana powers feeling stronger and happier than ever before. "The more I shared, the more magical it became!"</p>
+
+                <p>From that day forward, the Golden Banana Tree became the heart of brainrot land. Every evening, all the creatures would gather beneath its glowing branches to share fruit, tell stories, and enjoy each other's company. And Chimpanzini's juggling performances became more spectacular than ever, because now he knew the secret ingredient that made his magic truly powerful—sharing joy with friends.</p>
+
+                <p>As the golden light from the banana tree gently illuminated the evening sky, creating the most beautiful natural nightlight in all the land, the creatures of brainrot land would settle down for peaceful sleep, knowing that the most wonderful magic of all was the magic of generous hearts and shared happiness.</p>
+
+                <p>And in the soft glow of the Golden Banana Tree, children everywhere would close their eyes and dream of the joy that comes from giving, sharing, and spreading light in the world.</p>
+
+                <p><em><strong>The End</strong></em></p>
+            </div>
+        </div>
+
+        <!-- Story Navigation -->
+        <div class="story-nav">
+            <a href="brr_brr_patapim.html" class="story-nav-btn">← Previous: Brr Brr Patapim</a>
+            <a href="bombombini_gusini.html" class="story-nav-btn">Next: Bombombini Gusini →</a>
+        </div>
+    </div>
+
+    <script>
+        // Create floating particles
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * window.innerWidth + 'px';
+            particle.style.top = window.innerHeight + 'px';
+            particle.style.background = ['#ff0080', '#00ff80', '#8000ff'][Math.floor(Math.random() * 3)];
+            document.body.appendChild(particle);
+            
+            let pos = window.innerHeight;
+            const speed = Math.random() * 2 + 1;
+            const float = setInterval(() => {
+                pos -= speed;
+                particle.style.top = pos + 'px';
+                if (pos < -10) {
+                    clearInterval(float);
+                    particle.remove();
+                }
+            }, 30);
+        }
+
+        // Create particles occasionally
+        setInterval(createParticle, 1000);
+
+        // Smooth scrolling for long content
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const bg = document.querySelector('.bg-chaos');
+            bg.style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
+    </script>
+</body>
+</html>

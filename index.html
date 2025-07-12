@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brainrot Bedtime - Italian Character Adventures</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial Black', Arial, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Crazy animated background */
+        .bg-chaos {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 20% 50%, #ff0080 0%, transparent 50%),
+                       radial-gradient(circle at 80% 20%, #00ff80 0%, transparent 50%),
+                       radial-gradient(circle at 40% 80%, #8000ff 0%, transparent 50%),
+                       radial-gradient(circle at 90% 90%, #ff8000 0%, transparent 50%),
+                       radial-gradient(circle at 10% 10%, #00ffff 0%, transparent 50%);
+            animation: chaosMove 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes chaosMove {
+            0% { transform: rotate(0deg) scale(1); }
+            100% { transform: rotate(5deg) scale(1.1); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 4px solid #ff0080;
+            border-radius: 0;
+            padding: 20px;
+            box-shadow: 0 0 30px #ff0080, inset 0 0 30px rgba(255, 0, 128, 0.2);
+            transform: rotate(-1deg);
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px #ff0080, 0 0 20px #ff0080, 0 0 30px #ff0080;
+            animation: glitchText 2s infinite;
+            white-space: nowrap;
+        }
+
+        @keyframes glitchText {
+            0%, 90%, 100% { transform: translate(0); }
+            10% { transform: translate(-2px, 2px); }
+            20% { transform: translate(2px, -2px); }
+            30% { transform: translate(-2px, -2px); }
+            40% { transform: translate(2px, 2px); }
+            50% { transform: translate(-2px, 2px); }
+            60% { transform: translate(2px, -2px); }
+            70% { transform: translate(-2px, -2px); }
+            80% { transform: translate(2px, 2px); }
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: #00ff80;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .description {
+            font-size: 1rem;
+            color: #fff;
+            font-weight: normal;
+            line-height: 1.4;
+            max-width: 700px;
+            margin: 0 auto;
+            text-shadow: 2px 2px 4px #000;
+        }
+
+        .stories-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .story-card {
+            background: #000;
+            border: 3px solid;
+            border-radius: 0;
+            padding: 20px;
+            position: relative;
+            transition: all 0.3s ease;
+            transform: rotate(0deg);
+        }
+
+        .story-card:nth-child(odd) {
+            border-color: #ff0080;
+            box-shadow: 0 0 20px #ff0080;
+            transform: rotate(1deg);
+        }
+
+        .story-card:nth-child(even) {
+            border-color: #00ff80;
+            box-shadow: 0 0 20px #00ff80;
+            transform: rotate(-1deg);
+        }
+
+        .story-card:hover {
+            transform: rotate(0deg) scale(1.05);
+            z-index: 10;
+        }
+
+        .story-card:hover:nth-child(odd) {
+            box-shadow: 0 0 40px #ff0080, inset 0 0 20px rgba(255, 0, 128, 0.2);
+        }
+
+        .story-card:hover:nth-child(even) {
+            box-shadow: 0 0 40px #00ff80, inset 0 0 20px rgba(0, 255, 128, 0.2);
+        }
+
+        .story-image {
+            width: 100%;
+            height: 200px;
+            background: #333;
+            border: 2px solid #fff;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .story-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            image-rendering: pixelated;
+        }
+
+        .story-title {
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 8px;
+            line-height: 1.2;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .story-meta {
+            font-size: 0.8rem;
+            color: #00ff80;
+            font-weight: normal;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .story-synopsis {
+            font-size: 0.9rem;
+            color: #ddd;
+            line-height: 1.4;
+            margin-bottom: 15px;
+            font-weight: normal;
+        }
+
+        .read-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff0080, #8000ff);
+            color: #fff;
+            padding: 12px 20px;
+            border: 2px solid #fff;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .read-button:hover {
+            background: linear-gradient(45deg, #00ff80, #00ffff);
+            color: #000;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #8000ff;
+            color: #8000ff;
+            font-weight: bold;
+            transform: rotate(1deg);
+        }
+
+        /* Tablet styles */
+        @media (min-width: 768px) {
+            .stories-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+            
+            .logo {
+                font-size: 3.5rem;
+            }
+            
+            .story-image {
+                height: 220px;
+            }
+            
+            .story-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            
+            .story-title {
+                font-size: 1.3rem;
+            }
+        }
+
+        /* Desktop styles */
+        @media (min-width: 1024px) {
+            .stories-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 30px;
+            }
+            
+            .logo {
+                font-size: 4.5rem;
+            }
+        }
+
+        /* Chaos particles */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #ff0080;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 1; }
+            50% { transform: translateY(-20px) rotate(180deg); opacity: 0.5; }
+        }
+
+        /* Emojis that spin */
+        .emoji-spin {
+            display: inline-block;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-chaos"></div>
+    
+    <div class="container">
+        <header>
+            <h1 class="logo"><span class="emoji-spin">🧠</span> BRAINROT BEDTIME <span class="emoji-spin">🌙</span></h1>
+            <p class="subtitle">Wholesome Adventures with Chaotic Italian Characters</p>
+            <p class="description">
+                Meet Tralalero Tralala, Bombardiro Crocodilo, and their wonderfully weird friends! These 5-minute bedtime stories blend the fun, absurd world of Italian brainrot characters with gentle lessons about friendship, kindness, and growing up. Perfect for kids who love silly characters but still need calming bedtime stories.
+            </p>
+        </header>
+
+        <div class="stories-grid">
+            <div class="story-card">
+                <div class="story-image"><img src="tralalero_tralala_race.png" alt="Tralalero Tralala racing with his sneakers"></div>
+                <h2 class="story-title">Tralalero Tralala and the Race Without a Winner</h2>
+                <p class="story-meta">Lesson: Friendship matters more than winning</p>
+                <p class="story-synopsis">Shark-with-sneakers Tralalero races crocodile-plane Bombardiro through pasta hills. When his rival crashes into rainbow meatballs, Tralalero faces a choice between victory and helping a friend.</p>
+                <a href="story_page_template.html" class="read-button">Read Story</a>
+            </div>
+
+            <div class="story-card">
+                <div class="story-image"><img src="bombardiro_crocodilo_cloud.png" alt="Bombardiro Crocodilo flying through clouds"></div>
+                <h2 class="story-title">Bombardiro Crocodilo and the Cloud That Wouldn't Leave</h2>
+                <p class="story-meta">Lesson: It's okay to feel sad sometimes</p>
+                <p class="story-synopsis">A grumpy raincloud follows Bombardiro everywhere he flies. No matter what he tries, it won't go away—until he learns to understand his feelings instead of fighting them.</p>
+                <a href="bombardiro_crocodilo_cloud.html" class="read-button">Read Story</a>
+            </div>
+
+            <div class="story-card">
+                <div class="story-image"><img src="tung_sahur.png" alt="Tung Tung Sahur with his drums"></div>
+                <h2 class="story-title">Tung Tung Sahur and the Sleeping Village</h2>
+                <p class="story-meta">Lesson: Gentle approaches work better than force</p>
+                <p class="story-synopsis">The village drummer's wake-up call is TOO loud and everyone hides! With help from Ballerina Cappucina, he discovers that gentle rhythms wake hearts better than thunderous noise.</p>
+                <a href="tung_sahur.html" class="read-button">Read Story</a>
+            </div>
+
+            <div class="story-card">
+                <div class="story-image"><img src="lirili_larila.png" alt="Lirilì Larilà with time magic"></div>
+                <h2 class="story-title">Lirilì Larilà and the Hour That Disappeared</h2>
+                <p class="story-meta">Lesson: Time spent with friends is never wasted</p>
+                <p class="story-synopsis">Time-magic Lirilì tries to protect a lonely crystal shell creature by stopping time itself. But when time won't restart, she learns what makes moments truly precious.</p>
+                <a href="lirili_larila.html" class="read-button">Read Story</a>
+            </div>
+
+            <div class="story-card">
+                <div class="story-image"><img src="brr_brr_patapim.png" alt="Brr Brr Patapim in the forest"></div>
+                <h2 class="story-title">Brr Brr Patapim and the Frog in the Golden Hat</h2>
+                <p class="story-meta">Lesson: Listen to understand, not just to respond</p>
+                <p class="story-synopsis">Forest guardian Patapim's cozy golden hat gets a new resident—tiny Slim the frog, who sings terrible opera all night! Sometimes small problems need big patience.</p>
+                <a href="brr_brr_patapim.html" class="read-button">Read Story</a>
+            </div>
+
+            <div class="story-card">
+                <div class="story-image"><img src="chimpanzini_bananini.png" alt="Chimpanzini Bananini with golden banana"></div>
+                <h2 class="story-title">Chimpanzini Bananini and the Banana That Glowed</h2>
+                <p class="story-meta">Lesson: Joy grows when it's shared</p>
+                <p class="story-synopsis">Chimpanzini finds a magical golden banana and hides it to keep it safe. But the more he hoards it, the duller it gets—until he learns the secret of sharing.</p>
+                <a href="chimpanzini_bananini.html" class="read-button">Read Story</a>
+            </div>
+
+            <div class="story-card">
+                <div class="story-image"><img src="bombombini_gusini.png" alt="Bombombini Gusini delivering gifts"></div>
+                <h2 class="story-title">Bombombini Gusini and the Gift That Fell</h2>
+                <p class="story-meta">Lesson: Precision comes from patience and practice</p>
+                <p class="story-synopsis">Little brother Bombombini wants to deliver perfect gift-bombs but his flying is still wobbly. When he accidentally covers a dance party in candy, he learns about patience.</p>
+                <a href="bombombini_gusini.html" class="read-button">Read Story</a>
+            </div>
+
+            <div class="story-card">
+                <div class="story-image"><img src="capuccino_assassino.png" alt="Capuccino Assassino on a mission"></div>
+                <h2 class="story-title">Capuccino Assassino and the Boy Who Needed Sweetness</h2>
+                <p class="story-meta">Lesson: Sometimes kindness is braver than toughness</p>
+                <p class="story-synopsis">Mysterious coffee-spy Capuccino gets a mission to stop the "Bitter Enemy," but discovers it's just a kid who finds coffee too yucky. Sometimes helping is better than winning.</p>
+                <a href="capuccino_assassino.html" class="read-button">Read Story</a>
+            </div>
+
+            <div class="story-card">
+                <div class="story-image"><img src="trippi_troppi.png" alt="Trippi Troppi dancing"></div>
+                <h2 class="story-title">Trippi Troppi and the Mirror That Stayed Still</h2>
+                <p class="story-meta">Lesson: Do things for your own joy, not just for applause</p>
+                <p class="story-synopsis">Rubber-bodied dancer Trippi performs amazing moves for cheering crowds every day. But when he dances alone in a quiet room, he discovers something beautiful about authentic joy.</p>
+                <a href="trippi_troppi.html" class="read-button">Read Story</a>
+            </div>
+
+            <div class="story-card">
+                <div class="story-image"><img src="ballerina_cappucina.png" alt="Ballerina Cappucina dancing gracefully"></div>
+                <h2 class="story-title">Ballerina Cappucina and the Chipped Mug</h2>
+                <p class="story-meta">Lesson: Imperfections make us unique, not broken</p>
+                <p class="story-synopsis">Perfect porcelain ballerina Cappucina gets a tiny chip and thinks her dancing career is over. But she learns that flaws can make us more beautiful, not less.</p>
+                <a href="ballerina_cappucina.html" class="read-button">Read Story</a>
+            </div>
+        </div>
+
+        <footer>
+            <p>✨ Sweet dreams with silly friends ✨</p>
+            <p>New adventures added regularly</p>
+        </footer>
+    </div>
+
+    <script>
+        // Create chaos particles
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * window.innerWidth + 'px';
+            particle.style.top = window.innerHeight + 'px';
+            particle.style.background = ['#ff0080', '#00ff80', '#8000ff', '#00ffff'][Math.floor(Math.random() * 4)];
+            document.body.appendChild(particle);
+            
+            // Animate upward
+            let pos = window.innerHeight;
+            const speed = Math.random() * 3 + 1;
+            const float = setInterval(() => {
+                pos -= speed;
+                particle.style.top = pos + 'px';
+                if (pos < -10) {
+                    clearInterval(float);
+                    particle.remove();
+                }
+            }, 20);
+        }
+
+        // Create particles continuously
+        setInterval(createParticle, 500);
+
+        // Add glitch effect to cards on hover
+        document.querySelectorAll('.story-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.animation = 'glitchText 0.3s ease-out';
+                setTimeout(() => {
+                    card.style.animation = '';
+                }, 300);
+            });
+        });
+
+        // Random color changes for extra chaos
+        setInterval(() => {
+            const cards = document.querySelectorAll('.story-card');
+            const randomCard = cards[Math.floor(Math.random() * cards.length)];
+            const colors = ['#ff0080', '#00ff80', '#8000ff', '#00ffff', '#ff8000'];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            randomCard.style.borderColor = randomColor;
+            randomCard.style.boxShadow = `0 0 20px ${randomColor}`;
+        }, 3000);
+    </script>
+</body>
+</html>
